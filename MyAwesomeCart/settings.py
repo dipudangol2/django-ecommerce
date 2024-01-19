@@ -39,17 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog",
     "shop",
-    "tailwind",
-    "theme",
     "django_browser_reload",
+    "compressor",
 ]
-TAILWIND_APP_NAME = "theme"
+# configure compressor
+COMPRESS_ROOT = BASE_DIR / "static"
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+COMPRESS_ENABLED = True
 
-NPM_BIN_PATH = "C:/Program Files (x86)/nodejs/npm.cmd"
+STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -67,7 +65,7 @@ ROOT_URLCONF = "MyAwesomeCart.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
